@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -26,6 +27,11 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @Get(':id/orders')
+  getUserOrder(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.getUserOrder(id);
+  }
+
   @Post()
   create(@Body() payload: CreateUserDto) {
     return this.usersService.create(payload);
@@ -41,6 +47,6 @@ export class UsersController {
 
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.remove(+id);
+    return this.usersService.remove(id);
   }
 }
